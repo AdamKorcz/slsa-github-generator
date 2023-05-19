@@ -28,7 +28,7 @@ on:
         type: boolean
         default: false
       artifact-list:
-              description: "Comma-separated list of paths to artifacts to be released. Use GRADLE_VERSION for the gradle version, for example: 'artifact-GRADLE_VERSION-sources.jar'"
+        description: "Comma-separated list of paths to artifacts to be released. Use GRADLE_VERSION for the gradle version, for example: 'artifact-GRADLE_VERSION-sources.jar'"
         type: string
         required: true
       jdk-version:
