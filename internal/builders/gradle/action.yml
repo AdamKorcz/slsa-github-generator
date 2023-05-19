@@ -60,33 +60,7 @@ runs:
       env:
         SLSA_OUTPUTS_ARTIFACTS_FILE: ${{ inputs.slsa-layout-file }}
         ARTIFACT_LIST: ${{ fromJson(inputs.slsa-workflow-inputs).artifact-list }}
-      run: |
-        find . -name "sigstore-java-*-javadoc.jar"
-        find . -name "*.jar"
-        echo finding lib
-        find . -name "lib"
-        mkdir release-files-for-slsa
-        GRADLE_VERSION=$(./gradlew properties -q | grep "version:" | awk '{print $2}')
-        ARTIFACT_LIST=\"${ARTIFACT_LIST}\"
-        echo $ARTIFACT_LIST
-        for i in ${ARTIFACT_LIST//,/ }
-        do
-          i=$(echo $i | sed 's/\"//')
-          # check if $i is empty
-          if [ -z "$i" ]
-          then
-                continue
-          fi
-          echo i: $i
-          PATH_WITH_VERSION="${i//GRADLE_VERSION/"$GRADLE_VERSION"}"
-
-          echo "$PATH_WITH_VERSION"
-          bn=$(basename -- $PATH_WITH_VERSION)
-          echo $bn
-          mv $PATH_WITH_VERSION release-files-for-slsa/$bn
-        done
-        
-        ls release-files-for-slsa
+      run: ./internal/builders/gradle/collect_release_artifacts.sh
     - name: Upload built artifacts from gradlew build
       uses: actions/upload-artifact@v3
       with:
