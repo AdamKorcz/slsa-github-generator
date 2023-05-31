@@ -25,7 +25,7 @@ on:
       artifact-list:
         description: "Comma-separated list of paths to artifacts to be released. Use PROJECT_VERSION for the release version, for example: 'artifact-PROJECT_VERSION-sources.jar'"
         type: string
-        required: true
+        required: false
       jdk-version:
         description: "The JDK version"
         required: false
