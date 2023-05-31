@@ -53,6 +53,8 @@ runs:
         java-version: ${{ fromJson(inputs.slsa-workflow-inputs).jdk-version }}
     - name: Run mvn package
       shell: bash
+      env:
+        SLSA_OUTPUTS_ARTIFACTS_FILE: ${{ inputs.slsa-layout-file }}
       run: cd plugin && mvn clean install && cd .. && mvn package
 #    - name: Put release artifacts in one directory
 #      shell: bash
