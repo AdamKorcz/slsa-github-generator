@@ -228,8 +228,8 @@ jobs:
         id: upload-java-artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: project-dir
-          path: "."
+          name: target
+          path: target
 
   # generate-provenance generates and signs the provenance.
   generate-provenance:
@@ -258,7 +258,7 @@ jobs:
       - name: Download the java artifacts
         uses: actions/download-artifact@v3
         with:
-          name: project-dir
+          name: target
 
       - name: debug
         run: |
@@ -304,17 +304,31 @@ jobs:
         with:
           name: "${{ needs.rng.outputs.value }}-slsa-attestations"
           path: "${{ needs.rng.outputs.value }}-slsa-attestations"
-      - name: Add predicate to root folder
-        id: add-predicate-to-root-folder
+      
+          
+      - name: Upload java artifacts
+        id: upload-java-artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: target
+          path: target
+          
+          
+      - name: Upload predicate unsafely
+        id: upload-predicate-unsafely        
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-slsa-attestation
+          path: "${{ needs.rng.outputs.value }}-slsa-attestations/test-java-project-0.1.13.jar.intoto.sigstore"
         env:
           ATTESTATIONS_PATH: "${{ needs.rng.outputs.value }}-slsa-attestations"
-        run: |
-          ls "${ATTESTATIONS_PATH}"
-          mv "${ATTESTATIONS_PATH}"/test-java-project-0.1.13.jar.intoto.sigstore ../test-java-project/textfile.txt
-          ls ..
-          ls .
-          cat ../test-java-project/textfile.txt
-          pwd
+        #run: |
+        #  ls "${ATTESTATIONS_PATH}"
+        #  mv "${ATTESTATIONS_PATH}"/test-java-project-0.1.13.jar.intoto.sigstore ../test-java-project/textfile.txt
+        #  ls ..
+        #  ls .
+        #  cat ../test-java-project/textfile.txt
+        #  pwd
 
   # cleanup deletes internal artifacts used by the delegator workflow
   cleanup:
