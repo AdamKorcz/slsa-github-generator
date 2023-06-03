@@ -296,8 +296,8 @@ jobs:
         run: |
           ls "${ATTESTATIONS_PATH}"
           mv "${ATTESTATIONS_PATH}"/test-java-project-0.1.13.jar.intoto.sigstore ../test-java-project/textfile.txt
-          ls ../
-          cat ./textfile.txt
+          ls ../test-java-project
+          cat ../test-java-project/textfile.txt
 
   # cleanup deletes internal artifacts used by the delegator workflow
   cleanup:
