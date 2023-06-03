@@ -295,7 +295,7 @@ jobs:
           ATTESTATIONS_PATH: "${{ needs.rng.outputs.value }}-slsa-attestations"
         run: |
           ls "${ATTESTATIONS_PATH}"
-          mv "${ATTESTATIONS_PATH}"/test-java-project-0.1.13.jar.intoto.sigstore ./textfile.txt
+          mv "${ATTESTATIONS_PATH}"/test-java-project-0.1.13.jar.intoto.sigstore ../test-java-project/textfile.txt
           ls ../
           cat ./textfile.txt
 
