@@ -304,15 +304,7 @@ jobs:
         with:
           name: "${{ needs.rng.outputs.value }}-slsa-attestations"
           path: "${{ needs.rng.outputs.value }}-slsa-attestations"
-      
-          
-      - name: Upload java artifacts
-        id: upload-java-artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: target
-          path: target
-          
+             
           
       - name: Upload predicate unsafely
         id: upload-predicate-unsafely        
