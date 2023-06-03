@@ -292,7 +292,7 @@ jobs:
       - name: Add predicate to root folder
         id: predicate-type
         env:
-          ATTESTATIONS_PATH: ${{ fromJson(needs.rng.outputs.value).-slsa-attestations }}
+          ATTESTATIONS_PATH: "${{ fromJson(needs.rng.outputs.value) }}-slsa-attestations"
         run: |
           cat "${ATTESTATIONS_PATH}"
 
