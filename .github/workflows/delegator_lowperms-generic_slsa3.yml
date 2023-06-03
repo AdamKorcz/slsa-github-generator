@@ -228,8 +228,8 @@ jobs:
         id: upload-java-artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: target
-          path: target
+          name: project-dir
+          path: "."
 
   # generate-provenance generates and signs the provenance.
   generate-provenance:
@@ -258,7 +258,7 @@ jobs:
       - name: Download the java artifacts
         uses: actions/download-artifact@v3
         with:
-          name: target
+          name: project-dir
 
       - name: debug
         run: |
@@ -311,7 +311,8 @@ jobs:
         run: |
           ls "${ATTESTATIONS_PATH}"
           mv "${ATTESTATIONS_PATH}"/test-java-project-0.1.13.jar.intoto.sigstore ../test-java-project/textfile.txt
-          ls ../test-java-project
+          ls ..
+          ls .
           cat ../test-java-project/textfile.txt
           pwd
 
