@@ -294,7 +294,7 @@ jobs:
         env:
           ATTESTATIONS_PATH: "${{ needs.rng.outputs.value }}-slsa-attestations"
         run: |
-          cat "${ATTESTATIONS_PATH}"
+          ls "${ATTESTATIONS_PATH}"
 
   # cleanup deletes internal artifacts used by the delegator workflow
   cleanup:
