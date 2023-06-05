@@ -306,14 +306,14 @@ jobs:
           path: "${{ needs.rng.outputs.value }}-slsa-attestations"
              
           
-      - name: Upload predicate unsafely
-        id: upload-predicate-unsafely        
+      - name: Upload predicates unsafely
+        id: upload-predicates-unsafely        
         uses: actions/upload-artifact@v3
         with:
-          name: my-slsa-attestation
-          path: "${{ needs.rng.outputs.value }}-slsa-attestations/test-java-project-0.1.13.jar.intoto.sigstore"
-        env:
-          ATTESTATIONS_PATH: "${{ needs.rng.outputs.value }}-slsa-attestations"
+          name: slsa-attestations
+          path: "${{ needs.rng.outputs.value }}-slsa-attestations"
+        #env:
+        #  ATTESTATIONS_PATH: "${{ needs.rng.outputs.value }}-slsa-attestations"
         #run: |
         #  ls "${ATTESTATIONS_PATH}"
         #  mv "${ATTESTATIONS_PATH}"/test-java-project-0.1.13.jar.intoto.sigstore ../test-java-project/textfile.txt
