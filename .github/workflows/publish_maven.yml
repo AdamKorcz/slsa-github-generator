@@ -40,16 +40,16 @@ jobs:
       - name: Set up Java for publishing to Maven Central Repository
         uses: actions/setup-java@v3
         env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
-          GPG_KEY_PASS: ${{ secrets.GPG_PASSPHRASE }}
+          MAVEN_USERNAME: ${{ inputs.maven-username }}
+          MAVEN_PASSWORD: ${{ inputs.maven-password }}
+          GPG_KEY_PASS: ${{ inputs.gpg-key-pass }}
         with:
           java-version: '11'
           distribution: 'temurin'
           server-id: ossrh
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
-          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-private-key: ${{ inputs.gpg-private-key }}
           gpg-passphrase: GPG_KEY_PASS
 
 #    - name: Create temp dir
