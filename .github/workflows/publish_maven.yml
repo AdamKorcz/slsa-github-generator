@@ -14,22 +14,18 @@
 
 on:
   workflow_call:
-    inputs:
-      maven-password:
-        description: "Maven password"
-        required: false
-        type: string
-      gpg-key-pass:
-        description: "gpg-key-pass."
-        required: false
-        type: string
-      gpg-private-key:
-        description: "gpg-key-pass."
-        required: false
-        type: string
     secrets:
       maven-username:
         description: "Maven username"
+        required: false
+      maven-password:
+        description: "Maven password"
+        required: false
+      gpg-key-pass:
+        description: "gpg-key-pass."
+        required: false
+      gpg-private-key:
+        description: "gpg-key-pass."
         required: false
       
 jobs:
