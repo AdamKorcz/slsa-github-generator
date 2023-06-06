@@ -81,6 +81,7 @@ jobs:
         run: |
           # Build and run custom plugin
             cd plugin && mvn clean install && cd ..
+            echo $GPG_KEY_PASS
             # Re-indexing the secondary jar files for deploy
             mvn javadoc:jar source:jar
             # Retrieve project version
