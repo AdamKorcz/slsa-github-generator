@@ -39,6 +39,10 @@ jobs:
         uses: slsa-framework/slsa-github-generator/.github/actions/secure-project-checkout@main
       - name: Set up Java for publishing to Maven Central Repository
         uses: actions/setup-java@v3
+        env:
+          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          GPG_KEY_PASS: ${{ secrets.GPG_PASSPHRASE }}
         with:
           java-version: '11'
           distribution: 'temurin'
