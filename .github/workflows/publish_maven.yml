@@ -72,9 +72,9 @@ jobs:
       - name: Publish to the Maven Central Repository
         shell: bash
         env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
-          GPG_KEY_PASS: ${{ secrets.GPG_PASSPHRASE }}
+          MAVEN_USERNAME: ${{ inputs.maven-username }}
+          MAVEN_PASSWORD: ${{ inputs.maven-password }}
+          GPG_KEY_PASS: ${{ inputs.gpg-key-pass }}
         run: |
           # Build and run custom plugin
             cd plugin && mvn clean install && cd ..
