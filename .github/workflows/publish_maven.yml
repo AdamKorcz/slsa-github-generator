@@ -15,10 +15,6 @@
 on:
   workflow_call:
     inputs:
-      maven-username:
-        description: "Maven username"
-        required: false
-        type: string
       maven-password:
         description: "Maven password"
         required: false
@@ -31,6 +27,11 @@ on:
         description: "gpg-key-pass."
         required: false
         type: string
+    secrets:
+      maven-username:
+        description: "Maven username"
+        required: false
+      
 jobs:
   setup-java:
     runs-on: ubuntu-latest
