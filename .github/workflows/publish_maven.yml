@@ -35,6 +35,8 @@ jobs:
   setup-java:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout the project repository
+        uses: slsa-framework/slsa-github-generator/.github/actions/secure-project-checkout@main
       - name: Set up Java for publishing to Maven Central Repository
         uses: actions/setup-java@v3
         with:
