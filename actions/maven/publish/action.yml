@@ -15,14 +15,17 @@
 name: "npm-publish"
 description: "Publish package and provenance to npm"
 inputs:
-  provenance-name:
-    description: "The file name for the package provenance in the artifact."
+  maven-username:
+    description: "Maven username"
     required: false
-  provenance-download-name:
-    description: "The artifact name for the package provenance."
+  maven-password:
+    description: "Maven password"
     required: false
-  provenance-download-sha256:
-    description: "The sha256 of the package provenance artifact."
+  gpg-key-pass:
+    description: "gpg-key-pass."
+    required: false
+  gpg-private-key:
+    description: "gpg-key-pass."
     required: false
 runs:
   using: "composite"
@@ -35,7 +38,7 @@ runs:
           server-id: ossrh
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
-          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-private-key: ${{ inputs.gpg-private-key }}
           gpg-passphrase: GPG_KEY_PASS
 
 #    - name: Create temp dir
@@ -61,9 +64,9 @@ runs:
     - name: Publish to the Maven Central Repository
       shell: bash
       env:
-        MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-        MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
-        GPG_KEY_PASS: ${{ secrets.GPG_PASSPHRASE }}
+        MAVEN_USERNAME: ${{ inputs.maven-username }}
+        MAVEN_PASSWORD: ${{ inputs.maven-password }}
+        GPG_KEY_PASS: ${{ inputs.gpg-key-pass }}
       run: |
         # Build and run custom plugin
           cd plugin && mvn clean install && cd ..
