@@ -18,15 +18,19 @@ on:
       maven-username:
         description: "Maven username"
         required: false
+        type: string
       maven-password:
         description: "Maven password"
         required: false
+        type: string
       gpg-key-pass:
         description: "gpg-key-pass."
         required: false
+        type: string
       gpg-private-key:
         description: "gpg-key-pass."
         required: false
+        type: string
 jobs:
   setup-java:
     runs-on: ubuntu-latest
