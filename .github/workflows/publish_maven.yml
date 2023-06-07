@@ -71,7 +71,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: ${{ inputs.slsa-attestations-download-name }}
-          path: slsa-attestations
+          path: ./
 
       # TODO(#1897): Use upstream version of npm
       - name: Publish to the Maven Central Repository
@@ -84,8 +84,10 @@ jobs:
         run: |
           echo "ls"
           ls
-          echo "ls slsa-attestations/slsa-attestations"
-          ls slsa-attestations/slsa-attestations
+          #echo "ls slsa-attestations/slsa-attestations"
+          #ls slsa-attestations/slsa-attestations
+          echo "Find...."
+          find . -name "*.sigstore"
           echo "ls SLSA_DIR"
           ls $SLSA_DIR
           # Build and run custom plugin
