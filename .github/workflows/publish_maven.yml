@@ -14,6 +14,11 @@
 
 on:
   workflow_call:
+    inputs:
+      slsa-attestations-download-name:
+        description: "Name of dir containing slsa-attestations. Typically the 'RNG-slsa-attestations'."
+        type: string
+        required: true
     secrets:
       maven-username:
         description: "Maven username"
@@ -65,7 +70,7 @@ jobs:
       - name: Download the slsa attestation
         uses: actions/download-artifact@v3
         with:
-          name: slsa-attestations
+          name: ${{ inputs.slsa-attestations-download-name }}
           path: slsa-attestations
 
       # TODO(#1897): Use upstream version of npm
