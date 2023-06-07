@@ -81,6 +81,7 @@ jobs:
           MAVEN_PASSWORD: ${{ secrets.maven-password }}
           GPG_KEY_PASS: ${{ secrets.gpg-key-pass }}
         run: |
+          ls slsa-attestations
           # Build and run custom plugin
             cd plugin && mvn clean install && cd ..
             echo $GPG_KEY_PASS
