@@ -56,12 +56,12 @@ runs:
       env:
         SLSA_OUTPUTS_ARTIFACTS_FILE: ${{ inputs.slsa-layout-file }}
       run: cd plugin && mvn clean install && cd .. && mvn package
-    - name: Upload java artifacts
-      id: upload-java-artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: target
-        path: target
+#    - name: Upload java artifacts
+#      id: upload-java-artifacts
+#      uses: actions/upload-artifact@v3
+#      with:
+#        name: target
+#        path: target
 #    - name: Put release artifacts in one directory
 #      shell: bash
 #      env:
