@@ -224,12 +224,12 @@ jobs:
           name: "${{ needs.rng.outputs.value }}-${{ env.SLSA_ARTIFACTS_FILE }}"
           path: "${{ env.SLSA_ARTIFACTS_FILE }}"
           
-      - name: Upload java artifacts
-        id: upload-java-artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: target
-          path: target
+#      - name: Upload java artifacts
+#        id: upload-java-artifacts
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: target
+#          path: target
 
   # generate-provenance generates and signs the provenance.
   generate-provenance:
