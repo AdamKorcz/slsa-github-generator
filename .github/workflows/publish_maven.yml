@@ -15,10 +15,14 @@
 on:
   workflow_call:
     inputs:
-      slsa-attestations-download-name:
-        description: "Name of dir containing slsa-attestations. Typically the 'RNG-slsa-attestations'."
-        type: string
+      provenance-download-name:
+        description: "The artifact name for the package provenance."
         required: true
+        type: string
+      provenance-download-sha256:
+        description: "The sha256 of the package provenance artifact."
+        required: false
+        type: string
     secrets:
       maven-username:
         description: "Maven username"
@@ -53,6 +57,16 @@ jobs:
           server-password: MAVEN_PASSWORD
           gpg-private-key: ${{ secrets.gpg-private-key }}
           gpg-passphrase: GPG_KEY_PASS
+      
+      - name: Create temp dir
+        id: temp-dir
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          temp_dir=$(mktemp -d)
+          echo "path=${temp_dir}" >>"${GITHUB_OUTPUT}"
+
 
 #    - name: Create temp dir
 #      id: temp-dir
@@ -70,8 +84,14 @@ jobs:
       - name: Download the slsa attestation
         uses: actions/download-artifact@v3
         with:
-          name: ${{ inputs.slsa-attestations-download-name }}
+          name: ${{ inputs.provenance-download-name }}
           path: ./
+      - name: Download provenance
+        uses: slsa-framework/slsa-github-generator/actions/nodejs/secure-attestations-download@main
+        with:
+          name: ${{ inputs.provenance-download-name }}
+          path: "./slsa-attestations"
+          sha256: ${{ inputs.provenance-download-sha256 }}
 
       # TODO(#1897): Use upstream version of npm
       - name: Publish to the Maven Central Repository
@@ -80,7 +100,7 @@ jobs:
           MAVEN_USERNAME: ${{ secrets.maven-username }}
           MAVEN_PASSWORD: ${{ secrets.maven-password }}
           GPG_KEY_PASS: ${{ secrets.gpg-key-pass }}
-          SLSA_DIR: ${{ inputs.slsa-attestations-download-name }}
+          SLSA_DIR: ${{ inputs.provenance-download-name }}
         run: |
           echo "ls"
           ls
