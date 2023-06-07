@@ -306,12 +306,12 @@ jobs:
           path: "${{ needs.rng.outputs.value }}-slsa-attestations"
              
           
-#      - name: Upload predicates unsafely
-#        id: upload-predicates-unsafely        
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: slsa-attestations
-#          path: "${{ needs.rng.outputs.value }}-slsa-attestations"
+      - name: Upload predicates unsafely
+        id: upload-predicates-unsafely        
+        uses: actions/upload-artifact@v3
+        with:
+          name: slsa-attestations
+          path: "${{ needs.rng.outputs.value }}-slsa-attestations"
         #env:
         #  ATTESTATIONS_PATH: "${{ needs.rng.outputs.value }}-slsa-attestations"
         #run: |
