@@ -120,7 +120,7 @@ jobs:
             # Retrieve project version
             VERSION=$(mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout)
             # Reset the environment variables add in the base provenance
-            FILES="${SLSA_DIR}"/test-java-project-$VERSION.jar.intoto.sigstore
+            FILES=slsa-attestations/test-java-project-$VERSION.jar.intoto.sigstore
             TYPES=sigstore
             CLASSIFIERS=jar.intoto
             # Find all necessary built jar files and attach them to the enviornment variable deploy
