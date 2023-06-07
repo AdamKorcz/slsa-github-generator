@@ -106,6 +106,8 @@ jobs:
           ls
           #echo "ls slsa-attestations/slsa-attestations"
           #ls slsa-attestations/slsa-attestations
+          echo "pwd:"
+          pwd
           echo "Find...."
           find . -name "*.sigstore"
           echo "ls SLSA_DIR"
