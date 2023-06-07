@@ -77,10 +77,10 @@ jobs:
 #        temp_dir=$(mktemp -d)
 #        echo "path=${temp_dir}" >>"${GITHUB_OUTPUT}"
 
-      - name: Download the target dir
-        uses: actions/download-artifact@v3
-        with:
-          name: target
+#      - name: Download the target dir
+#        uses: actions/download-artifact@v3
+#        with:
+#          name: target
       - name: Download the slsa attestation
         uses: actions/download-artifact@v3
         with:
