@@ -80,8 +80,14 @@ jobs:
           MAVEN_USERNAME: ${{ secrets.maven-username }}
           MAVEN_PASSWORD: ${{ secrets.maven-password }}
           GPG_KEY_PASS: ${{ secrets.gpg-key-pass }}
+          SLSA_DIR: ${{ inputs.slsa-attestations-download-name }}
         run: |
-          ls slsa-attestations
+          echo "ls"
+          ls
+          echo "ls slsa-attestations/slsa-attestations"
+          ls slsa-attestations/slsa-attestations
+          echo "ls SLSA_DIR"
+          ls $SLSA_DIR
           # Build and run custom plugin
             cd plugin && mvn clean install && cd ..
             echo $GPG_KEY_PASS
