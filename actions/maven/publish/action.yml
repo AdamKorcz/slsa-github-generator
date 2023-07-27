@@ -82,6 +82,9 @@ runs:
         PROVENANCE_FILES: "${{ inputs.provenance-download-name }}"
       run: |
         # Build and run custom plugin
+        echo "ls .."
+        ls ..
+        echo "end ls .."
         cd ./../__TOOL_ACTION_DIR__/plugin && ls && mvn clean install && cd -
         #cd plugin && mvn clean install && cd ..
         # Re-indexing the secondary jar files for deploy
