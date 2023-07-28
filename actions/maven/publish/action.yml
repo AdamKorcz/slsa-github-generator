@@ -81,13 +81,6 @@ runs:
         SLSA_DIR: "${{ inputs.provenance-download-name }}"
         PROVENANCE_FILES: "${{ inputs.provenance-download-name }}"
       run: |
-        # Build and run custom plugin
-        #echo "ls .."
-        #ls ..
-        #echo "end ls .."
-        #cd ./../__TOOL_ACTION_DIR__/plugin && ls && mvn clean install && cd -
-        #cd plugin && mvn clean install && cd ..
-        # Re-indexing the secondary jar files for deploy
         mvn javadoc:jar source:jar
         # Retrieve project version
         version=$(mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout)
