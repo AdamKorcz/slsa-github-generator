@@ -94,7 +94,7 @@ runs:
         for name in $(find ./ -name "$artifactid-$version-*.jar")
         do
           # shellcheck disable=SC1001 # shellcheck complains over \- but the line does what it should.
-          target=$(echo "${name}" | rev | cut -d\- -f1 | rev)
+          target=$(echo "${name}" | rev | cut -d- -f1 | rev)
           files=$files,$name
           types=$types,${target##*.}
           classifiers=$classifiers,${target%.*}
