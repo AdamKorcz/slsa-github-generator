@@ -87,6 +87,7 @@ jobs:
 Now, when you invoke this workflow, the Maven builder will build both your artifacts and the provenance files for them.
 
 ### Releasing directly to Maven Central
+
 You can also release artifacts to Maven Central with [the slsa-github-generator Maven publisher](https://github.com/slsa-framework/slsa-github-generator/blob/main/actions/maven/publish/action.yml) by adding the following step to your workflow:
 
 ```yaml
